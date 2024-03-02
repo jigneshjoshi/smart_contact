@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="normal/base::layout(~{::section})">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Home</title>
+</head>
+<body>
+<section>
+   <div class="container">
+       <div class="card">
+           <div class="card-body">
+               <div class="container text-center">
+                   <img src="" style="height: 200px;width: 200px;"
+                        class="my-profile-picture"
+                        th:src="@{/img/phone.jpg}"
+                        alt="smart_contact_manager.png"
+                   >
+               </div>
+               <h1 class="text-center mt-3 text-secondary fst-italic">
+                   Start adding your contact on cloud....
+               </h1>
+               <h4 class="text-center mt-3 text-secondary fst-italic">In today's digital era, managing and storing contact information efficiently is crucial. Leveraging cloud services can provide a scalable and reliable solution.</h4>
+               <a th:href="@{/user/add-contact}" class="btn btn-primary mt-4 text-uppercase d-grid">Add new Contact</a>
+           </div>
+       </div>
+
+   </div>
+    <script>
+        $(document).ready(()=>{
+            $(".item").removeClass("active");
+            $("#home-link").addClass("active");
+        })
+    </script>
+</section>
+</body>
+</html>

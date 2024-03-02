@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="base::layout(~{::section})">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<section class ="banner">
+ <div class="get-started">
+     <h1>Smart Contact Application</h1>
+        <p>Effortlessly manage and organize your contacts with Smart Contact.</p>
+       
+      <button><a th:href="@{'/user/login'}" class="btn  btn-sm">Get Started</a></button>
+    </div>
+</section>
+</body>
+</html>
