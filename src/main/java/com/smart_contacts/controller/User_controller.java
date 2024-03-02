@@ -196,7 +196,7 @@ return "normal/add_contact_form";
 			String username=principal.getName();
 	    	User user=this.userrepo.getUserByUserName(username);
 	    	
-	    	File saveFile = new ClassPathResource("static/img").getFile().getAbsoluteFile();
+	    	File saveFile = new ClassPathResource("static/img/").getFile().getAbsoluteFile();
 	    	Path path = Paths.get(saveFile.getAbsolutePath() + File.separator + multipartFile.getOriginalFilename());
 	    	Files.copy(multipartFile.getInputStream(), path, StandardCopyOption.REPLACE_EXISTING);
 	    	this.userrepo.save(user);
