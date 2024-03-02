@@ -15,6 +15,7 @@ import javax.validation.Valid;
 import javax.websocket.Session;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -52,6 +53,8 @@ public class User_controller {
 	private Contactrepo contactrepo;
 	@Autowired
 	private BCryptPasswordEncoder bCryptPasswordEncoder;
+	@Value("${upload.directory}")
+    private String uploadDirectory;
 	 // This method run for every method index, add_contact or etc.
     // Method for adding common data for response.
     
@@ -110,13 +113,18 @@ contact.setImage(multipartFile.getOriginalFilename());
 /*String userDirectory = System.getProperty("user.dir");
 String uploadDirectory = userDirectory + "\\uploadImg";
 */
-// image save to static folder
-File saveFile = new ClassPathResource("static/img/").getFile();
+Path uploadPath = Path.of(uploadDirectory);
+if (!Files.exists(uploadPath)) {
+    Files.createDirectories(uploadPath);
+}
 
-Path path = Paths.get(saveFile.getAbsolutePath() + File.separator + multipartFile.getOriginalFilename());
-Files.copy(multipartFile.getInputStream(), path, StandardCopyOption.REPLACE_EXISTING);
+Path filePath = uploadPath.resolve(multipartFile.getOriginalFilename());
+System.out.println(filePath);
+Files.copy(multipartFile.getInputStream(), filePath, StandardCopyOption.REPLACE_EXISTING);
 System.out.println("File is Uploaded");
 }
+// image save to static folder
+
 contact.setUser(user);
 
 user.getContacts().add(contact);
@@ -195,10 +203,9 @@ return "normal/add_contact_form";
 	    	try {	// TODO: handle exception
 			String username=principal.getName();
 	    	User user=this.userrepo.getUserByUserName(username);
-	    	
-	    	File saveFile = new ClassPathResource("static/img/").getFile().getAbsoluteFile();
+	    	user.setImageUrl(multipartFile.getOriginalFilename());
+	    	File saveFile = new ClassPathResource("static/img/").getFile();
 	    	Path path = Paths.get(saveFile.getAbsolutePath() + File.separator + multipartFile.getOriginalFilename());
-	    	Files.copy(multipartFile.getInputStream(), path, StandardCopyOption.REPLACE_EXISTING);
 	    	this.userrepo.save(user);
 	    	return "normal/profile_page";
 				
