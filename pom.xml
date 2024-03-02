@@ -8,11 +8,10 @@
         <version>2.5.5</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    
-    <groupId>com.jignesh</groupId>
+     <groupId>com.jignesh</groupId>
     <artifactId>SmartContactManager</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <packaging>war</packaging>
+    <packaging>jar</packaging>
     <name>SmartContactManager</name>
     <description>SmartContactManager</description>
     <properties>
