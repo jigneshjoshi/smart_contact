@@ -119,7 +119,8 @@ if (!Files.exists(uploadPath)) {
 }
 
 Path filePath = uploadPath.resolve(multipartFile.getOriginalFilename());
-System.out.println(filePath);
+
+
 Files.copy(multipartFile.getInputStream(), filePath, StandardCopyOption.REPLACE_EXISTING);
 System.out.println("File is Uploaded");
 }
