@@ -16,10 +16,10 @@ const toggleSidebar = () => {
 
 const search = () => {
     console.log("Searching......");
-    let query = $("#search-input").val();
+    let query = $("#search_input").val();
 
     if (query === ''){
-        $(".search-result").hide();
+        $(".search-bar").hide();
 
     }else {
         // search
@@ -39,7 +39,7 @@ const search = () => {
             });
             text += `</div>`
             // show search result using jquery
-            $(".search-result").html(text).show();
+            $(".search-bar").html(text).show();
 
            // $(".search-result").show();
         });

@@ -114,3 +114,28 @@ body{
     background: white !important;
     color: black !important;
 }
+* Style the search container */
+.search-container {
+  margin-bottom: 20px;
+  position:relative;
+}
+
+#search-bar
+{position:absolute;
+background:block;
+}/* Style the input field */
+.search-container input[type="text"] {
+  padding: 10px;
+  width: 300px;
+  border: 1px solid #ccc;
+  border-radius: 5px; /* Rounded corners */
+  outline: none; /* Remove default input focus outline */
+}
+
+.search-bar{
+	position:absolute;
+	background:white;
+	width:100%;
+	display:none;
+	
+}
