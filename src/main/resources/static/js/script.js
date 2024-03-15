@@ -35,7 +35,7 @@ const search = () => {
             // show data in html
             let text = `<div class='list-group'>`;
             data.forEach((contact)=>{
-                text += `<a href="/user/${contact.cId}/contact" style="background: whitesmoke" class="list-group-item list-group-item-action">${contact.name}</a>`;
+                text += `<a href="/user/${contact.cId}/contact" style="background: white; " class="list-group-item list-group-item-action">${contact.name}</a>`;
             });
             text += `</div>`
             // show search result using jquery
