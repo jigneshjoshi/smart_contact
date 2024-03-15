@@ -40,18 +40,14 @@ public class Mainhandler {
     }
 
     @GetMapping("/signin")
-    public String login(Model model) {
+    public String login(@RequestParam(value = "error", required = false) String error, Model model) {
         model.addAttribute("title", "login-digitalcontactbook");
+        if (error != null) {
+            model.addAttribute("error", "Invalid username or password!");
+        }
        return "login";
     }
     
-    @GetMapping("/login_fail")
-    public String loginfail(Model model) {
-    	model.addAttribute("title", "error");
-    	model.addAttribute("error_msg", "credentials not match");
-        return "login_error";}
-    
-
     @GetMapping("/signup")
     public String signup(Model model) {
         model.addAttribute("title", "signup-digitalcontactbook");

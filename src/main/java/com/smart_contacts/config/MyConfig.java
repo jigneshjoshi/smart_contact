@@ -51,7 +51,7 @@ public class MyConfig extends WebSecurityConfigurerAdapter {
                .formLogin()
                .loginPage("/signin/")
                .loginProcessingUrl("/dologin")
-               .failureUrl("/login_fail")
+               .failureUrl("/signin?error=true")
                .defaultSuccessUrl("/user/index")
              
               .and()
