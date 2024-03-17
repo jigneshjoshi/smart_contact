@@ -43,7 +43,82 @@ const search = () => {
 
            // $(".search-result").show();
         });
-
-
+        
+        }
+      
+    
+};
+const paymentstart = () => {
+    let payment = $("#inputField").val();
+    console.log(payment);
+    if(payment=="" || payment==null){
+        alert("enter amount");
+        return;
     }
-}
+    $.ajax(
+        {
+            url:'/user/create_order',
+            data:JSON.stringify({amount:payment,info:"order_req"}),
+            contentType:'application/json',
+            type:'POST',
+            dataType:'json',
+            success:function(response){
+                console.log(response)
+                if(response.status == "created"){
+                    //open pay page
+                    let options={
+                        key: "rzp_test_xDeywQjrteFN8q", // Enter the Key ID generated from the Dashboard
+                        amount:response.amount , // Amount is in currency subunits. Default currency is
+                       // INR. Hence, 50000 refers to 50000 paise
+                        currency: "INR",
+                        name: "jignesh",
+                        description: "update plan",
+                       // image: "https://example.com/your_logo",
+                        order_id: response.order_id, //This is a sample Order ID. Pass the
+                        //`id` obtained in the response of Step 1
+                        handler: function (response){
+                        console.log(response.razorpay_payment_id);
+                        console.log(response.razorpay_order_id);
+                        console.log(response.razorpay_signature)
+                        console.log("successfully done ")
+                        alert("congrates")
+                        },
+                        prefill: {
+                            name: "",
+                            email: "",
+                            contact: ""
+                            },
+                            notes: {
+                            address: "by jignesh "
+                            
+                            },
+                            theme: {
+                            color: "#3399cc"
+                            }
+                            };
+                            var rzp1 = new Razorpay(options);
+rzp1.on('payment.failed', function (response){
+console.log(response.error.code);
+console.log(response.error.description);
+console.log(response.error.source);
+console.log(response.error.step);
+console.log(response.error.reason);
+console.log(response.error.metadata.order_id);
+console.log(response.error.metadata.payment_id);
+alert("failed payment")
+});
+rzp1.open();
+                
+                }
+
+            },
+            error:function(error){
+                console.log(error)
+            }
+            
+        }
+    )
+        
+    };
+
+    

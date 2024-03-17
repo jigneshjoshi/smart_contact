@@ -25,9 +25,11 @@
                <h4 class="text-center mt-3 text-secondary fst-italic">In today's digital era, managing and storing contact information efficiently is crucial. Leveraging cloud services can provide a scalable and reliable solution.</h4>
                <a th:href="@{/user/add-contact}" class="btn btn-primary mt-4 text-uppercase d-grid">Add new Contact</a>
            </div>
-       </div>
-
-   </div>
+      <div class="container" style="max-width: 400px; margin: 0 auto; background-color: #fff; padding: 20px; border-radius: 8px; box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);">
+    <h1 style="text-align: center; margin-bottom: 20px;">plan upgrade</h1>
+    <input type="text" id="inputField" style="padding: 10px; width: 100%; margin-bottom: 10px; border: 1px solid #ccc; border-radius: 5px;" placeholder="Enter amount ..">
+    <button onclick="paymentstart()" style="background-color: #4CAF50; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; transition: background-color 0.3s;">pay</button>
+  </div>
     <script>
         $(document).ready(()=>{
             $(".item").removeClass("active");

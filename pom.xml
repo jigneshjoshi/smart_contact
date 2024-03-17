@@ -68,6 +68,13 @@
     <artifactId>javax.mail</artifactId>
     <version>1.6.2</version>
 </dependency>
+<!-- https://mvnrepository.com/artifact/com.razorpay/razorpay-java -->
+<dependency>
+    <groupId>com.razorpay</groupId>
+    <artifactId>razorpay-java</artifactId>
+    <version>1.4.5</version>
+</dependency>
+
     </dependencies>
 
     <build>

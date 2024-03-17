@@ -8,12 +8,15 @@ import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.security.Principal;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import javax.websocket.Session;
 
+import org.attoparser.config.ParseConfiguration;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.ClassPathResource;
@@ -29,11 +32,16 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.util.StringUtils;
 import com.fasterxml.jackson.core.sym.Name;
+import com.razorpay.Order;
+import com.razorpay.RazorpayClient;
+import com.razorpay.RazorpayException;
 import com.smart_contacts.ENTITIES.Contact;
 import com.smart_contacts.ENTITIES.User;
 import com.smart_contacts.deo.Contactrepo;
@@ -314,6 +322,23 @@ return "normal/add_contact_form";
 
 	        return "redirect:/user/index";
 
+	    }
+	    @PostMapping("/create_order")
+	   @ResponseBody
+	    public String createoder(@RequestBody Map<String, Object>data) throws RazorpayException {
+	    	System.out.println(data);
+	    	int amt=Integer.parseInt(data.get("amount").toString());
+	    	var client= new RazorpayClient("rzp_test_xDeywQjrteFN8q", "RYU7yJhOaOWxvfkRYy8kVzpJ");
+	    	
+	    	JSONObject object =new JSONObject();
+	    	object.put("amount",amt*100);
+	    	object.put("currency","INR");
+	    	object.put("receipt", "txn_235425");
+	    	//create new order
+	    	Order order =client.orders.create(object);
+	    	System.out.println(order) ;
+	    	
+	    	return order.toString();
 	    }
  }
 	   
