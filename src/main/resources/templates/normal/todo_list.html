@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="normal/base::layout(~{::section})" >
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+
+</head>
+
+
+<body>
+
+<section>
+<section class="vh-100 gradient-custom-2">
+  <div class="container py-1 h-100" >
+    <div class="row d-flex justify-content-center align-items-center h-100 py-1"  >
+      <div class="col-md-12 col-xl-10">
+
+        <div class="card mask-custom" style="background-color:#424242;">
+          <div class="card-body p-4 text-white">
+           <a href="addtask" class="btn btn-primary mb-3">Add Task</a>
+
+            <div class="text-center pt-3 pb-2" style="background-color:#3b71ca;">
+              <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-todo-list/check1.webp"
+                alt="Check" width="60">
+              <h2 class="my-4">Task List</h2>
+            </div>
+
+            <table class="table text-white mb-0">
+              <thead>
+                <tr>
+                  <th scope="col">Team Member</th>
+                  <th scope="col">Task</th>
+                  <th scope="col">Priority</th>
+                  <th scope="col">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="fw-normal" th:each ="todo : ${todo}">
+                  <th>
+                    <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava1-bg.webp"
+                      alt="avatar 1" style="width: 45px; height: auto;">
+                    <span class="ms-2" th:text="${todo.name}"></span>
+                  </th>
+                  <td class="align-middle">
+                    <span th:text="${todo.task}"> </span>
+                  </td>
+                  <td class="align-middle">
+                    <h6 class="mb-0"><span class="badge bg-danger" th:text="${todo.priority}"></span></h6>
+                  </td>
+                  <td class="align-middle">
+                    <a href="#!" data-mdb-toggle="tooltip" title="Done"><i
+                        class="fas fa-check fa-lg text-success me-3"></i></a>
+                    <a href="#!" data-mdb-toggle="tooltip" title="Remove"><i
+                        class="fas fa-trash-alt fa-lg text-warning"></i></a>
+                  </td>
+                </tr>
+               
+              </tbody>
+            </table>
+
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  
+</div>
+</section>
+
+ <script>
+        $(document).ready(() => {
+            $(".item").removeClass("active");
+            $("#todo-link").addClass("active");
+        })
+    </script>
+</section>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="normal/base::layout(~{::section})" >
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+
+</head>
+
+
+<body>
+<section>
+<div class="container mt-5" style="max-width: 600px; margin: auto;">
+  <h2 style="text-align: center; margin-bottom: 30px;">Task Form</h2>
+
+  <form action="#"  th:action="@{/user/savetodo}" method="post">
+    <div class="form-group">
+      <label for="name" style="font-weight: bold;">Name:</label>
+      <input type="text" class="form-control" id="name" name="name" style="width: 100%;" required>
+    </div>
+
+    <div class="form-group">
+      <label for="task" style="font-weight: bold;">Task:</label>
+      <textarea class="form-control" id="task"  name="task" rows="4" style="width: 100%; resize: vertical;" required></textarea>
+    </div>
+
+    <div class="form-group">
+      <label for="priority" style="font-weight: bold;">Priority:</label>
+      <select class="form-control" id="priority" name="priority" style="width: 100%;" required>
+        <option value="">Select Priority</option>
+        <option value="high">High</option>
+        <option value="medium">Medium</option>
+        <option value="low">Low</option>
+      </select>
+    </div>
+    <br>
+
+    <button type="submit" class="btn btn-primary" style="width: 100%;">Submit</button>
+  </form>
+
+
+
+
+
+
+
+
+
+
+ <script>
+        $(document).ready(() => {
+            $(".item").removeClass("active");
+            $("#todo-link").addClass("active");
+        })
+    </script>
+</section>
+</body>
+</html>

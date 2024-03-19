@@ -43,8 +43,10 @@ import com.razorpay.Order;
 import com.razorpay.RazorpayClient;
 import com.razorpay.RazorpayException;
 import com.smart_contacts.ENTITIES.Contact;
+import com.smart_contacts.ENTITIES.Todo;
 import com.smart_contacts.ENTITIES.User;
 import com.smart_contacts.deo.Contactrepo;
+import com.smart_contacts.deo.Todotask;
 import com.smart_contacts.deo.Userrepo;
 import com.smart_contacts.halper.Message;
 
@@ -55,6 +57,8 @@ import java.util.Optional;
 @Controller
 @RequestMapping("/user")
 public class User_controller {
+	@Autowired
+	private Todotask todotask;
 	@Autowired
 	private Userrepo userrepo;
 	@Autowired
@@ -302,6 +306,7 @@ return "normal/add_contact_form";
 	        model.addAttribute("title", "Settings");
 	        return "normal/setting";
 	    }
+	   
 	    // change password handler
 	    @PostMapping("/change-password")
 	    public String changePassword(Model model, Principal principal, HttpSession session,
@@ -323,6 +328,10 @@ return "normal/add_contact_form";
 	        return "redirect:/user/index";
 
 	    }
+	    
+	   
+	    
+	    
 	    @PostMapping("/create_order")
 	   @ResponseBody
 	    public String createoder(@RequestBody Map<String, Object>data) throws RazorpayException {
@@ -339,6 +348,24 @@ return "normal/add_contact_form";
 	    	System.out.println(order) ;
 	    	
 	    	return order.toString();
+	    }
+	    @PostMapping("/savetodo")
+	    public String todosave(@ModelAttribute Todo todo, Model model) {
+	    	System.out.println(todo);
+	    	todotask.save(todo);
+	    	
+	    	
+	    	return "normal/todo_list";
+	    }
+	    @GetMapping("/todo")
+	    public String todo_methodlist(Model model) {
+	    	model.addAttribute("todo", todotask.findAll());
+	    	return "normal/todo_list";
+	    }
+	    @GetMapping("/addtask")
+	    public String todo_methodlist() {
+	    	
+	    	return "normal/addtask";
 	    }
  }
 	   
