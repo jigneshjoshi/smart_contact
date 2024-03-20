@@ -28,6 +28,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -355,7 +356,7 @@ return "normal/add_contact_form";
 	    	todotask.save(todo);
 	    	
 	    	
-	    	return "normal/todo_list";
+	    	return "redirect:/user/todo";
 	    }
 	    @GetMapping("/todo")
 	    public String todo_methodlist(Model model) {
@@ -367,7 +368,16 @@ return "normal/add_contact_form";
 	    	
 	    	return "normal/addtask";
 	    }
+	    @GetMapping("/removetododata/{id}")
+	    public String deleteTodoData(@PathVariable("id") Long id) {
+	        Optional<Todo> todo = todotask.findById(id);
+	        if (todo == null) {
+	            return "error";
+	        }
+	        todotask.deleteById(id);
+	        return "redirect:/user/todo";
+	    }
  }
-	   
+
 	    
 	  
