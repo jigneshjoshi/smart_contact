@@ -351,10 +351,10 @@ return "normal/add_contact_form";
 	    	return order.toString();
 	    }
 	    @PostMapping("/savetodo")
-	    public String todosave(@ModelAttribute Todo todo, Model model) {
+	    public String todosave(@ModelAttribute Todo todo, Model model,HttpSession httpSession) {
 	    	System.out.println(todo);
 	    	todotask.save(todo);
-	    	
+	    	 httpSession.setAttribute("message", new Message("Task successfully added. Please check ! ","alert-success"));
 	    	
 	    	return "redirect:/user/todo";
 	    }
@@ -369,11 +369,13 @@ return "normal/add_contact_form";
 	    	return "normal/addtask";
 	    }
 	    @GetMapping("/removetododata/{id}")
-	    public String deleteTodoData(@PathVariable("id") Long id) {
+	    public String deleteTodoData(@PathVariable("id") Long id, HttpSession httpSession) {
 	        Optional<Todo> todo = todotask.findById(id);
 	        if (todo == null) {
+	        	httpSession.setAttribute("message", new Message("oohhh sorry please try again! ","alert-danger"));
 	            return "error";
 	        }
+	        httpSession.setAttribute("message", new Message("successfully deleted! ","alert-success"));
 	        todotask.deleteById(id);
 	        return "redirect:/user/todo";
 	    }

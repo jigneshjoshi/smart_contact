@@ -46,11 +46,11 @@
                     <span th:text="${todo.task}"> </span>
                   </td>
                   <td class="align-middle">
-                    <h6 class="mb-0"><span class="badge bg-danger" th:text="${todo.priority}"></span></h6>
+                    <h6 class="mb-0"><span class="badge bg-danger" th:if="${session.message}"
+             th:classappend="${session.message.type}" th:text="${todo.priority}"></span></h6>
                   </td>
                   <td class="align-middle">
-                    <a href="#!" data-mdb-toggle="tooltip" title="Done"><i
-                        class="fas fa-check fa-lg text-success me-3"></i></a>
+                   
                     <a th:href="@{'/user/removetododata/'+${todo.id}}"  data-mdb-toggle="tooltip" title="Remove"><i
                         class="fas fa-trash-alt fa-lg text-warning"></i></a>
                   </td>
